@@ -6,7 +6,6 @@ from separate_ingestion.utils import http_get
 
 ARXIV_API = "http://export.arxiv.org/api/query"
 
-
 def parse_arxiv_feed(xml_text: str):
     root = ET.fromstring(xml_text)
     ns = {"atom": "http://www.w3.org/2005/Atom"}
@@ -27,7 +26,6 @@ def parse_arxiv_feed(xml_text: str):
         arxiv_id = id_text.split("/")[-1]
         entries.append({"arxiv_id": arxiv_id, "title": title, "summary": summary, "pdf_url": pdf_url, "year": year})
     return entries
-
 
 class ArxivAdapter(BaseAdapter):
     name = "arxiv"
